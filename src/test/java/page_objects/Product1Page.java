@@ -3,18 +3,12 @@ package page_objects;
 import command_providers.ActOn;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 
 public class Product1Page {
 
-    private final By YouBet = By.xpath("//button[@class='button button--primary text-sm']");
     private final By AboutThisProduct1 = By.linkText("About this product");
     private final By Quantity = By.name("custom-input-number");
     private final By AddToBag = By.xpath("//button[@data-test-id='add-to-bag-button']");
@@ -24,22 +18,6 @@ public class Product1Page {
         this.driver = driver;
     }
     private static final Logger LOGGER = LogManager.getLogger(Product1Page.class);
-
-    public Product1Page waitForPopUp() {
-        LOGGER.debug("Waiting for Popup");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-        String text = alert.getText();
-        System.out.println(text);
-        alert.accept();
-        return this;
-    }
-    public Product1Page PressYouBet() {
-        LOGGER.debug("Press you bet! button");
-        ActOn.element(driver, YouBet).mouseHover().click();
-        return this;
-    }
 
     public Product1Page waitForPageToLoad() {
         LOGGER.debug("Wait for the Product1 Page to Load");

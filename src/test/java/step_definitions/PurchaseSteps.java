@@ -20,11 +20,9 @@ public class PurchaseSteps {
         ActOn.browser(driver).openBrowser(ReadConfigFiles.getPropertyValues("LeaflyURL"));
         LOGGER.info("User is on Leafly Product1 Page");
     }
-    @When("user clicks on add to bag button upon entering {string} in the Quantity field")
+    @When("user clicks on add to bag button upon entering \"(.+?)\" in the Quantity field")
     public void user_clicks_on_add_to_bag_button_upon_entering_in_the_quantity_field(String value) {
         new Product1Page(driver)
-                .waitForPopUp()
-                .PressYouBet()
                 .waitForPageToLoad()
                 .enterValue(value)
                 .clickOnAddToBag();
@@ -36,7 +34,7 @@ public class PurchaseSteps {
                 .clickOnBagIcon();
         LOGGER.info("Clicked on Bag Icon");
     }
-    @Then("quantity displays {string} items in the cart")
+    @Then("quantity displays \"(.+?)\" items in the cart")
     public void quantity_displays_items(String value) {
         new CartPage(driver)
                 .waitForPageToLoad()
